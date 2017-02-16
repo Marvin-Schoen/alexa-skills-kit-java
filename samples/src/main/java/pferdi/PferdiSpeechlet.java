@@ -1,5 +1,6 @@
 package pferdi;
 
+import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.LaunchRequest;
 import com.amazon.speech.speechlet.Session;
@@ -23,7 +24,30 @@ public class PferdiSpeechlet implements Speechlet {
 
 	@Override
 	public SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException {
+		Intent intent = request.getIntent();
+		String intentName = (intent != null) ? intent.getName() : null;
+
+		if ("HelloWorldIntent".equals(intentName)) {
+			return getHelloResponse();
+		} else if ("AMAZON.HelpIntent".equals(intentName)) {
+			return getHelpResponse();
+		} else {
+			throw new SpeechletException("Invalid Intent");
+		}
+	}
+
+	private SpeechletResponse getHelloResponse() {
 		return null;
+	}
+
+	private SpeechletResponse getHelpResponse() {
+		String speechText = "Sag: erkläre mir mein Dokument oder stell eine Frage";
+
+		// Create the plain text output.
+		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+		speech.setText(speechText);
+
+		return SpeechletResponse.newTellResponse(speech);
 	}
 
 	@Override

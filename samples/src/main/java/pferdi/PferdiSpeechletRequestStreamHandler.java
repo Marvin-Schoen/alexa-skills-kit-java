@@ -12,7 +12,7 @@ public class PferdiSpeechletRequestStreamHandler extends SpeechletRequestStreamH
 		 * This Id can be found on https://developer.amazon.com/edw/home.html#/ "Edit" the relevant
 		 * Alexa Skill and put the relevant Application Ids in this Set.
 		 */
-		supportedApplicationIds.add("amzn1.ask.skill.b6eb7cbc-4878-4bad-be4d-2c82f0e6cae2 ");
+		supportedApplicationIds.add("amzn1.ask.skill.b6eb7cbc-4878-4bad-be4d-2c82f0e6cae2");
 	}
 
 	public PferdiSpeechletRequestStreamHandler() {
