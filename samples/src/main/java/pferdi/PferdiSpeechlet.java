@@ -17,6 +17,8 @@ import com.amazon.speech.ui.SimpleCard;
 
 public class PferdiSpeechlet implements Speechlet {
 	private static final Logger log = LoggerFactory.getLogger(PferdiSpeechlet.class);
+
+	private int zaehler = 0;
 	@Override
 	public void onSessionStarted(SessionStartedRequest request, Session session) throws SpeechletException {
 	}
@@ -35,11 +37,22 @@ public class PferdiSpeechlet implements Speechlet {
 
 		if ("HelloWorldIntent".equals(intentName)) {
 			return getHelloResponse();
+		} else if ("QuestionIntent".equals(intentName)) {
+			return getQuestionIntentResponse();
 		} else if ("AMAZON.HelpIntent".equals(intentName)) {
 			return getHelpResponse();
 		} else {
 			throw new SpeechletException("Invalid Intent");
 		}
+	}
+
+	private SpeechletResponse getQuestionIntentResponse() {
+		zaehler++;
+		String speechText = "Das ist deine " + zaehler + ". Frage";
+		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+		speech.setText(speechText);
+
+		return SpeechletResponse.newTellResponse(speech);
 	}
 
 	private SpeechletResponse getHelloResponse() {
