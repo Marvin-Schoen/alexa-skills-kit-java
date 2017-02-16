@@ -84,6 +84,7 @@ public class PferdiSpeechlet implements Speechlet {
 
 	@Override
 	public void onSessionEnded(SessionEndedRequest request, Session session) throws SpeechletException {
+		zaehler = 0;
 	}
 
 	private SpeechletResponse getWelcomeResponse() {
