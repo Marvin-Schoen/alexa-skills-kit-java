@@ -1,5 +1,8 @@
 package pferdi;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.LaunchRequest;
@@ -12,7 +15,7 @@ import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 
 public class PferdiSpeechlet implements Speechlet {
-
+	private static final Logger log = LoggerFactory.getLogger(PferdiSpeechlet.class);
 	@Override
 	public void onSessionStarted(SessionStartedRequest request, Session session) throws SpeechletException {
 	}
@@ -24,6 +27,8 @@ public class PferdiSpeechlet implements Speechlet {
 
 	@Override
 	public SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException {
+		log.info("onIntent requestId={}, sessionId={}", request.getRequestId(), session.getSessionId());
+
 		Intent intent = request.getIntent();
 		String intentName = (intent != null) ? intent.getName() : null;
 
@@ -41,6 +46,8 @@ public class PferdiSpeechlet implements Speechlet {
 	}
 
 	private SpeechletResponse getHelpResponse() {
+		log.info("getHelpResponse aufgerufen");
+
 		String speechText = "Sag: erkläre mir mein Dokument oder stell eine Frage";
 
 		// Create the plain text output.
@@ -55,7 +62,7 @@ public class PferdiSpeechlet implements Speechlet {
 	}
 
 	private SpeechletResponse getWelcomeResponse() {
-		String speechText = "Hallo ich bin Pferdi. Frag mich nach deinem Fahrzeug Wechsel Dokument";
+		String speechText = "Hallo ich bin Pferdi, das Maskottchen der LVM Versicherung. Frag mich nach deinem Fahrzeug Wechsel Dokument";
 
 		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
 		speech.setText(speechText);
