@@ -41,9 +41,21 @@ public class PferdiSpeechlet implements Speechlet {
 			return getQuestionIntentResponse();
 		} else if ("AMAZON.HelpIntent".equals(intentName)) {
 			return getHelpResponse();
+		} else if ("MehrereZeitraumeIntent".equals(intentName)) {
+			return getMehrereZeitraumeResponse();
 		} else {
 			throw new SpeechletException("Invalid Intent");
 		}
+	}
+
+	private SpeechletResponse getMehrereZeitraumeResponse() {
+
+		String speechText = "Zum Jahreswechsel können sich wesentliche Beitragsmerkmale wie zum Beispiel die SF-Klasse, die Regionalklasse oder die Typklasse ändern. Damit Sie die genaue Beitragsunterschiede erkennen führen wir für das jetzige Fahrzeug die einzelnen Zahlungszeiträume und die wesentlichen Beitragsmerkmale auf." + "Für das bisherige Fahrzeug betrachten wir aus anderen Gründen 2 Zeiträume: Der Zeitraum vom 06.01.2016 bis zum 02.06.2016 betrachtet den zuletzt von ihnen gezahlten Beitrag. der Zeitraum vom 03.06.2016 bis 03.09.2016 betrachtet den Zeitraum für die neue Versicherungsperiode zu der Sie bereits eine Rechnung für Ihr bisheriges Fahrzeug erhalten haben.  Den Rechnungsbetrag von 12 Euro schreiben wir Ihnen gut.";
+
+		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+		speech.setText(speechText);
+
+		return SpeechletResponse.newTellResponse(speech);
 	}
 
 	private SpeechletResponse getQuestionIntentResponse() {
