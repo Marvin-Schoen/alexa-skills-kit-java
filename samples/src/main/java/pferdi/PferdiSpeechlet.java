@@ -13,6 +13,7 @@ import com.amazon.speech.speechlet.Speechlet;
 import com.amazon.speech.speechlet.SpeechletException;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
+import com.amazon.speech.ui.SimpleCard;
 
 public class PferdiSpeechlet implements Speechlet {
 	private static final Logger log = LoggerFactory.getLogger(PferdiSpeechlet.class);
@@ -42,7 +43,18 @@ public class PferdiSpeechlet implements Speechlet {
 	}
 
 	private SpeechletResponse getHelloResponse() {
-		return null;
+		String speechText = "Hallo Kunde";
+
+		// Create the Simple card content.
+		SimpleCard card = new SimpleCard();
+		card.setTitle("HelloWorld");
+		card.setContent(speechText);
+
+		// Create the plain text output.
+		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+		speech.setText(speechText);
+
+		return SpeechletResponse.newTellResponse(speech, card);
 	}
 
 	private SpeechletResponse getHelpResponse() {
