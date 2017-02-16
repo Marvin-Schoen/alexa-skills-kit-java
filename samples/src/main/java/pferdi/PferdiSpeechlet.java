@@ -60,7 +60,7 @@ public class PferdiSpeechlet implements Speechlet {
 	private SpeechletResponse getHelpResponse() {
 		log.info("getHelpResponse aufgerufen");
 
-		String speechText = "Sag: erkl‰re mir mein Dokument oder stell eine Frage";
+		String speechText = "Sag: erkl√§re mir mein Dokument oder stell eine Frage";
 
 		// Create the plain text output.
 		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
